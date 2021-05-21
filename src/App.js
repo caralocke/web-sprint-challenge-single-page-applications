@@ -69,10 +69,9 @@ const App = () => {
       name: formValues.name.trim(),
       size: formValues.size.trim(),
       special: formValues.special.trim(),
-      // toppings: ['cheese', 'pepperoni', 'bbqchicken', 'sausage'].filter(top => {
-      //   formValues[top]
-      // })
+      hobbies: ['cheese', 'pepperoni', 'bbqchicken', 'sausage'].filter(hob => formValues[hob]),
     }
+    postNewCustomer(newCustomer)
   }
 
   return (
@@ -81,16 +80,15 @@ const App = () => {
         <h1 className='pizza-header'>Lambda Eats</h1>
         <div className='nav-links'>
           <Link to='/'>Home</Link>
-          <Link to='/pizza'>Order now!</Link>
+          <Link id='order-pizza' to='/pizza'>Order now!</Link>
         </div>
       </nav>
 
       <Switch>
-        <Route path='/' component={Home}>
-        </Route>
         <Route path='/pizza' component={PizzaForm}>
           <PizzaForm values={formValues} change={inputChange} submit={formSubmit} disabled={disabled} errors={formErrors}/>
         </Route>
+        <Route path='/' component={Home}/>
       </Switch>
     </div>
   );
