@@ -53,6 +53,19 @@ nav {
   color: #61dafb;
 }
 
+.home-wrapper{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.home-img {
+  width: 100%;
+  max-height: 50%;
+  object-fit: cover;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

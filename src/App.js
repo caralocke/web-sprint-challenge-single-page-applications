@@ -10,10 +10,10 @@ import './App.css'
 const initialFormValues = {
   name: '',
   size: '',
-  topping1: false,
-  topping2: false,
-  topping3: false,
-  topping4: false,
+  cheese: false,
+  pepperoni: false,
+  bbqchicken: false,
+  sausage: false,
   special: '',
 }
 
@@ -37,7 +37,7 @@ const App = () => {
     axios
     .get('https://reqres.in/api/orders')
     .then(res => {
-      console.log('GET res.data: /n', res.data)
+      // console.log('GET res.data: /n', res.data)
       setCustomers(res.data)
     })
     .catch(err => {
@@ -51,14 +51,13 @@ const App = () => {
     .post('https://reqres.in/api/orders', newCustomer)
     .then(res => {
       setCustomers([...customers, res.data])
-      setFormValues(initialFormValues)
     })
-    .catch(err => {
+    .catch( err => {
       debugger
       console.log(`Here's where you messed up:`, err)
     })
     .finally(() => {
-      setFormValues(initialFormErrors)
+      setFormValues(initialFormValues)
     })
   }
 
@@ -81,28 +80,25 @@ const App = () => {
   }
 
   const inputChange = (name, value) => {
-    // validate(name, value)
+    validate(name, value)
     setFormValues({
       ...formValues,
       [name]: value
     })
+    console.log('formValues:\n', formValues)
   }
-  console.log('formValues:\n', formValues)
 
   const formSubmit = () => {
     const newCustomer = {
-      name: formValues.name.trim(),
-      size: formValues.size.trim(),
-      special: formValues.special.trim(),
-      hobbies: ['cheese', 'pepperoni', 'bbqchicken', 'sausage'].filter(hob => formValues[hob]),
+      name: formValues.name,
+      size: formValues.size,
+      special: formValues.special,
+      toppings: ['cheese', 'pepperoni', 'bbqchicken', 'sausage'].filter(topping => formValues[topping]),
     }
     postNewCustomer(newCustomer)
   }
 
-  // useEffect(() => {
-  //   getCustomers()
-  // }, [])
-  
+   
   useEffect(() => {
     schema.isValid(formValues).then(valid => {
       setDisabled(!valid)

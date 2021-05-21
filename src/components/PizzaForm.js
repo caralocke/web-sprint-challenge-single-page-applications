@@ -10,14 +10,16 @@ export default function PizzaForm(props) {
 
     const onChange = evt => {
         const {name, value, type, checked} = evt.target
-        const valueToUse = type ==='checkbox' ? checked: value
+        const valueToUse = type === 'checkbox' ? checked : value
         change(name, valueToUse)
-        console.log('event target: \n', evt.target)
+        // console.log('event target: \n', evt.target)
     }
     
     return (
         <form id='pizza-form' onSubmit={onSubmit}>
             <div className='group-submit'>
+                <h2>Place an Order</h2>
+
                 <div className='errors'>
                     <div>{errors.name}</div>
                     <div>{errors.size}</div>
@@ -28,15 +30,16 @@ export default function PizzaForm(props) {
             <div className='name-input'>
                 <label>Name:
                     <input 
-                    defaultValue={values.name}
+                    value={values.name}
                     onChange={onChange}
                     id='name-input'
+                    name='name'
                     type='text'
                     />
                 </label>
 
                 <label> Size
-                    <select onChange={onChange} value={values.size} id='size-dropdown'>
+                    <select onChange={onChange} value={values.size} id='size-dropdown' name='size'>
                         <option value=''>--Select a size--</option>
                         <option value='small'>Small</option>
                         <option value='medium'>Medium</option>
@@ -45,26 +48,31 @@ export default function PizzaForm(props) {
                 </label>
                 <div className='group-checkboxes'>
                     <h3>Toppings:</h3>
+
                     <label>Cheese
-                        <input type='checkbox' name='cheese' checked={values.cheese} onChange={onChange}/>
+                        <input type='checkbox' name='cheese' checked={!!values.cheese} onChange={onChange}/>
                     </label>
+
                     <label>Pepperoni
-                        <input type='checkbox' name='pepperoni' checked={values.pepperoni} onChange={onChange}/>
+                        <input type='checkbox' name='pepperoni' checked={!!values.pepperoni} onChange={onChange}/>
                     </label>
+
                     <label>BBQ Chicken
-                        <input type='checkbox' name='bbqchicken' checked={values.bbqchicken} onChange={onChange}/>
+                        <input type='checkbox' name='bbqchicken' checked={!!values.bbqchicken} onChange={onChange}/>
                     </label>
+                    
                     <label>Sausage
-                        <input type='checkbox' name='sausage' checked={values.sausage} onChange={onChange}/>
+                        <input type='checkbox' name='sausage' checked={!!values.sausage} value={!!values.sausage} onChange={onChange}/>
                     </label>                   
                 </div>
+
                 <div className='special-input'>
                     <label>Special Instructions:
-                        <input type='text' id='special-text' defaultValue={values.special} onChange={onChange} />
+                        <input type='text' id='special-text' name='special' onChange={onChange} />
                     </label> 
                 </div>
                 <div>
-                    <button disabled={disabled}>submit</button>
+                    <button disabled={disabled} id='order-button'>submit</button>
                 </div>
             </div>
         </form>
