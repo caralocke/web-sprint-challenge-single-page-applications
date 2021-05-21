@@ -17,7 +17,7 @@ export default function PizzaForm(props) {
     
     return (
         <form id='pizza-form' onSubmit={onSubmit}>
-            <div className='group-submit'>
+            <div className='Order-top'>
                 <h2>Place an Order</h2>
 
                 <div className='errors'>
@@ -27,7 +27,7 @@ export default function PizzaForm(props) {
                 </div>
             </div>
 
-            <div className='name-input'>
+            <div className='form-input'>
                 <label>Name:
                     <input 
                     value={values.name}
@@ -50,19 +50,19 @@ export default function PizzaForm(props) {
                     <h3>Toppings:</h3>
 
                     <label>Cheese
-                        <input type='checkbox' name='cheese' checked={!!values.cheese} onChange={onChange}/>
+                        <input type='checkbox' name='cheese' checked={values.cheese} onChange={onChange}/>
                     </label>
 
                     <label>Pepperoni
-                        <input type='checkbox' name='pepperoni' checked={!!values.pepperoni} onChange={onChange}/>
+                        <input type='checkbox' name='pepperoni' checked={values.pepperoni} value={values.pepperoni[0]} onChange={onChange}/>
                     </label>
 
                     <label>BBQ Chicken
-                        <input type='checkbox' name='bbqchicken' checked={!!values.bbqchicken} onChange={onChange}/>
+                        <input type='checkbox' name='bbqchicken' checked={values.bbqchicken} onChange={onChange}/>
                     </label>
-                    
+
                     <label>Sausage
-                        <input type='checkbox' name='sausage' checked={!!values.sausage} value={!!values.sausage} onChange={onChange}/>
+                        <input type='checkbox' name='sausage' checked={values.sausage} onChange={onChange}/>
                     </label>                   
                 </div>
 

@@ -47,8 +47,7 @@ const App = () => {
   }
 
   const postNewCustomer = newCustomer => {
-    axios
-    .post('https://reqres.in/api/orders', newCustomer)
+    axios.post('https://reqres.in/api/orders', newCustomer)
     .then(res => {
       setCustomers([...customers, res.data])
     })
