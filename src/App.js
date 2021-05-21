@@ -33,19 +33,7 @@ const App = () => {
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
   
-  const getCustomers = () => {
-    axios
-    .get('https://reqres.in/api/orders')
-    .then(res => {
-      // console.log('GET res.data: /n', res.data)
-      setCustomers(res.data)
-    })
-    .catch(err => {
-      debugger
-      console.log(`Here's where you messed up:`, err)
-    })
-  }
-
+ 
   const postNewCustomer = newCustomer => {
     axios.post('https://reqres.in/api/orders', newCustomer)
     .then(res => {
