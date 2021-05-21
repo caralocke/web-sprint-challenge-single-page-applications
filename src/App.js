@@ -58,6 +58,12 @@ const App = () => {
     })
   }
 
+  const inputChange = (name, value) => {
+    setFormValues({
+      ...formValues, [name]: value
+    })
+  }
+
   const formSubmit = () => {
     const newCustomer = {
       name: formValues.name.trim(),
@@ -81,10 +87,9 @@ const App = () => {
 
       <Switch>
         <Route path='/' component={Home}>
-          <Home />
         </Route>
         <Route path='/pizza' component={PizzaForm}>
-          <PizzaForm />
+          <PizzaForm values={formValues} change={inputChange} submit={formSubmit} disabled={disabled} errors={formErrors}/>
         </Route>
       </Switch>
     </div>
