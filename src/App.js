@@ -87,6 +87,18 @@ const App = () => {
     console.log('formValues:\n', formValues)
   }
 
+  
+
+  const convertArrayToObject = (array, key) => {
+    const initialValue = {}
+    return array.reduce((obj, item) => {
+      return {
+        ...obj,
+        [item[key]]: item,
+      }
+    }, initialValue)
+  }
+
   const formSubmit = () => {
     const newCustomer = {
       name: formValues.name,

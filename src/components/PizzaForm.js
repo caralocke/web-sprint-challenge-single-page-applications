@@ -54,7 +54,7 @@ export default function PizzaForm(props) {
                     </label>
 
                     <label>Pepperoni
-                        <input type='checkbox' name='pepperoni' checked={values.pepperoni} value={values.pepperoni[0]} onChange={onChange}/>
+                        <input type='checkbox' name='pepperoni' checked={values.pepperoni} onChange={onChange}/>
                     </label>
 
                     <label>BBQ Chicken
