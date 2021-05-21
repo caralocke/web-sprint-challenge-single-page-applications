@@ -9,10 +9,12 @@ export default function PizzaForm(props) {
     }
 
     const onChange = evt => {
-        const {name, value, checked, type} = evt.target
+        const {name, value, type, checked} = evt.target
         const valueToUse = type ==='checkbox' ? checked: value
         change(name, valueToUse)
+        console.log('event target: \n', evt.target)
     }
+    
     return (
         <form id='pizza-form' onSubmit={onSubmit}>
             <div className='group-submit'>
@@ -26,7 +28,7 @@ export default function PizzaForm(props) {
             <div className='name-input'>
                 <label>Name:
                     <input 
-                    value={values.name}
+                    defaultValue={values.name}
                     onChange={onChange}
                     id='name-input'
                     type='text'
@@ -37,8 +39,8 @@ export default function PizzaForm(props) {
                     <select onChange={onChange} value={values.size} id='size-dropdown'>
                         <option value=''>--Select a size--</option>
                         <option value='small'>Small</option>
-                        <option value='small'>Medium</option>
-                        <option value='small'>Large</option>
+                        <option value='medium'>Medium</option>
+                        <option value='large'>Large</option>
                     </select>
                 </label>
                 <div className='group-checkboxes'>
@@ -58,7 +60,7 @@ export default function PizzaForm(props) {
                 </div>
                 <div className='special-input'>
                     <label>Special Instructions:
-                        <input type='text' id='special-text' value={values.special} onChange={onChange} />
+                        <input type='text' id='special-text' defaultValue={values.special} onChange={onChange} />
                     </label> 
                 </div>
                 <div>

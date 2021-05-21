@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Route, Link, Switch} from 'react-router-dom'
 import Home from './components/Home'
 import PizzaForm from './components/PizzaForm'
 import axios from 'axios'
+import schema from './validation/formSchema'
+import * as yup from 'yup'
 import './App.css'
 
 const initialFormValues = {
@@ -35,6 +37,7 @@ const App = () => {
     axios
     .get('https://reqres.in/api/orders')
     .then(res => {
+      console.log('GET res.data: /n', res.data)
       setCustomers(res.data)
     })
     .catch(err => {
@@ -45,9 +48,10 @@ const App = () => {
 
   const postNewCustomer = newCustomer => {
     axios
-    .post('https://reqres.in/api/orders')
+    .post('https://reqres.in/api/orders', newCustomer)
     .then(res => {
-      setCustomers([res.data, ...customers])
+      setCustomers([...customers, res.data])
+      setFormValues(initialFormValues)
     })
     .catch(err => {
       debugger
@@ -58,11 +62,32 @@ const App = () => {
     })
   }
 
-  const inputChange = (name, value) => {
-    setFormValues({
-      ...formValues, [name]: value
+  const validate = (name, value) => {
+    yup
+    .reach(schema, name)
+    .validate(value)
+    .then(valid => {
+      setFormErrors({
+        ...formErrors,
+        [name]: ''
+      })
+    })
+    .catch(err => {
+      setFormErrors({
+        ...formErrors,
+        [name]: err.errors[0]
+      })
     })
   }
+
+  const inputChange = (name, value) => {
+    // validate(name, value)
+    setFormValues({
+      ...formValues,
+      [name]: value
+    })
+  }
+  console.log('formValues:\n', formValues)
 
   const formSubmit = () => {
     const newCustomer = {
@@ -73,6 +98,16 @@ const App = () => {
     }
     postNewCustomer(newCustomer)
   }
+
+  // useEffect(() => {
+  //   getCustomers()
+  // }, [])
+  
+  useEffect(() => {
+    schema.isValid(formValues).then(valid => {
+      setDisabled(!valid)
+    })
+  },[formValues])
 
   return (
     <div className='App'>
