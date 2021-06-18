@@ -6,7 +6,8 @@ import OrderForm from './components/OrderForm' //Imported OrderForm
 import schema from './validation/formSchema' //Import the schema
 import axios from 'axios' //Import axios
 import styled from 'styled-components' //Import styled
-import brickImg from './images/brick.jpg'
+import brickImg from './images/black-and-white-brick-background.jpg'//Import brick image
+import steam from './images/steam.jpg'//Import steam image
 
 const StyledApp = styled.div`
   font-family: sans-serif;
@@ -17,13 +18,15 @@ const StyledApp = styled.div`
 `
 
 const StlyedTitle = styled.h1`
-  color:${({theme}) => theme.primaryColor};
+  color:${({theme}) => theme.black};
   -webkit-text-stroke-width: .7px;
-  -webkit-text-stroke-color: ${({theme}) => theme.black};
+  -webkit-text-stroke-color: ${({theme}) => theme.secondaryColor};
   margin-bottom: 10px;
+  margin-left: 10px;
+  background-image:url(${steam});
 
   &:hover {
-    color: ${({theme}) => theme.secondaryColor};
+    color: ${({theme}) => theme.tertiaryColor};
     transform: scale(1.1);
   }
 `
@@ -50,14 +53,14 @@ const StyledLinks = styled(Link)`
 
 const StyledButton = styled.button`
   background-color: ${({theme}) => theme.primaryColor};
-  color: ${({theme}) => theme.secondaryColor};
+  color: ${({theme}) => theme.black};
   font-weight: bold;
   font-size: 14px;
   -webkit-text-stroke-width: .3px;
   -webkit-text-stroke-color: orange;
 
   &:hover {
-    background-color: ${({theme}) => theme.tertiaryColor};
+    background-color: ${({theme}) => theme.black};
     -webkit-text-stroke-width: .5px;
     -webkit-text-stroke-color: ${({theme}) => theme.primaryColor};
     cursor: pointer;
