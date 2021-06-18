@@ -6,6 +6,7 @@ import OrderForm from './components/OrderForm' //Imported OrderForm
 import schema from './validation/formSchema' //Import the schema
 import axios from 'axios' //Import axios
 import styled from 'styled-components' //Import styled
+import theme from "./theme";
 
 const StyledApp = styled.div`
   font-family: sans-serif;
@@ -15,6 +16,9 @@ const StyledApp = styled.div`
 
 const StlyedTitle = styled.h1`
   color:${({theme}) => theme.primaryColor};
+  margin-left: 10px;
+  -webkit-text-stroke-width: .7px;
+  -webkit-text-stroke-color: orange;
 
   &:hover {
     color: ${({theme}) => theme.secondaryColor};
@@ -37,8 +41,7 @@ const StyledNav = styled.div`
 const StyledLinks = styled(Link)`
   margin-right: 10px;
 
-  &:hover {
-    color: ${({theme}) => theme.secondaryColor};
+  &:hover {    
     transform: scale(1.1);
   }
 `
@@ -47,6 +50,15 @@ const StyledButton = styled.button`
   background-color: ${({theme}) => theme.primaryColor};
   color: ${({theme}) => theme.secondaryColor};
   font-weight: bold;
+  font-size: 14px;
+  -webkit-text-stroke-width: .3px;
+  -webkit-text-stroke-color: orange;
+
+  &:hover {
+    background-color: ${({theme}) => theme.tertiaryColor};
+    -webkit-text-stroke-width: .5px;
+    -webkit-text-stroke-color: ${({theme}) => theme.primaryColor};
+  }
 `
 
 //create initial form values
