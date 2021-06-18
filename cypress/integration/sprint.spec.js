@@ -13,6 +13,9 @@ describe('Lambda Eats App', () => {
     const vegetableInput = () => cy.get('input[name=vegetable]')
     const sizeInput = () => cy.get('#size-dropdown')
     const orderBtn = () => cy.get('#order-button')
+    const homeBtn = () => cy.get('#go-home')
+    const orderNowBtn = () => cy.get('#order-pizza')
+    const crust = () => {cy.get('input[type=radio]')}
 
     it('Can add text to the box', () =>{
         nameInput().type('Name')
@@ -31,5 +34,22 @@ describe('Lambda Eats App', () => {
         sizeInput().select('small')
         cheeseInput().click()
         orderBtn().click()
+    })
+
+    //adding more tests for stretch
+    it('The button to submit the order is disabled by default', () => {
+        orderBtn().should('be.disabled')
+    })
+
+    it('Can navigate home and back to the order page', () => {
+        homeBtn().click()
+        orderNowBtn().click()
+    })
+
+    it('Can select a crust option', () => {
+        crust().each(elem => {
+            elem.click()
+        })
+        cy.get("input[value='hand-tossed']").should('be.checked')
     })
 })

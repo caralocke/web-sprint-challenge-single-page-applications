@@ -13,6 +13,7 @@ const StyledFormContainer = styled.form`
     display:flex;
     flex-direction:column;
     align-items: center;
+    border-radius: 10px;
 `
 const StyledForm = styled.div`
     background-color: bisque;
@@ -22,17 +23,22 @@ const StyledForm = styled.div`
     flex-direction:row;
     padding: 5%;
     margin-top: 50px;
+    border-radius: 10px;
 `
 
 const StyledInputs = styled.div `
     display:flex;
     flex-direction: column;
     margin: 0 auto;
-    max-width: 50%;
+    max-width: 33%;
 
     &.checkboxes {
         display:flex;
         flex-direction: row;
+    }
+    &.radio-buttons {
+        display:flex;
+        flex-direction: column;
     }
 `
 
@@ -44,6 +50,13 @@ const StyledButton = styled.button`
   -webkit-text-stroke-width: .3px;
   -webkit-text-stroke-color: orange;
 
+  &:hover {
+    background-color: ${({theme}) => theme.tertiaryColor};
+    -webkit-text-stroke-width: .5px;
+    -webkit-text-stroke-color: ${({theme}) => theme.primaryColor};
+    cursor: pointer;
+  }
+
   &:disabled {
     color:maroon;
     background-color: darkgray;
@@ -51,11 +64,6 @@ const StyledButton = styled.button`
     cursor: not-allowed;
   }
 
-  &:hover {
-    background-color: ${({theme}) => theme.tertiaryColor};
-    -webkit-text-stroke-width: .5px;
-    -webkit-text-stroke-color: ${({theme}) => theme.primaryColor};
-  }
 `
 const StyledErrors = styled.div`
     color: ${({theme}) => theme.tertiaryColor};
@@ -84,6 +92,7 @@ export default function OrderForm(props) {
                     <div className='errors'> {/*Display the validation errors */}
                         <StyledErrors>{errors.name}</StyledErrors>
                         <StyledErrors>{errors.size}</StyledErrors>
+                        <StyledErrors>{errors.crust}</StyledErrors>
                     </div>
 
                     <label>Name:
@@ -127,6 +136,32 @@ export default function OrderForm(props) {
                         <label>Vegetable
                             <input type='checkbox' name='vegetable' checked={values.vegetable} onChange={onChange}/>
                         </label>
+                        <br></br>
+                        </div>
+                    </label>
+                </StyledInputs>
+                
+                <StyledInputs className='radio-buttons'>
+                    <label>Crust Type:
+                        <div>
+                            <label>Regular
+                                <input type='radio' name='crust' value='regular' onChange={onChange} checked={values.crust === 'regular'}/>
+                            </label>
+                        </div>
+                        <div>                        
+                            <label>Gluten Free
+                                <input type='radio' name='crust' value='gluten-free' onChange={onChange} checked={values.crust === 'gluten-free'}/>
+                            </label>
+                        </div>
+                        <div>
+                            <label>Stuffed Crust
+                                <input type='radio' name='crust' value='stuffed' onChange={onChange} checked={values.crust === 'stuffed'}/>
+                            </label>
+                        </div>
+                        <div>
+                            <label>Hand Tossed
+                                <input type='radio' name='crust' value='hand-tossed' onChange={onChange} checked={values.crust === 'hand-tossed'}/>
+                            </label>
                         </div>
                     </label>
                 </StyledInputs>

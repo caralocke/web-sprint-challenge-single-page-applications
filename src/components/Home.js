@@ -34,6 +34,10 @@ const Styledh2 = styled.h2`
 const StyledImage = styled.img`
     width: 400px;
     border-radius: 50%;
+
+    &:hover{
+        border: 5px ridge ${({theme}) => theme.tertiaryColor};
+    }
 `
 
 const StyledButton = styled.button`

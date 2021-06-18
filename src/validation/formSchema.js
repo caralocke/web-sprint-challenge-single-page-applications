@@ -12,5 +12,7 @@ export default yup.object().shape({
     pepperoni: yup.boolean(),
     sausage: yup.boolean(),
     vegetable: yup.boolean(),
-    special: yup.string()
+    special: yup.string(),
+    crust: yup.string()
+              .oneOf(['regular', 'gluten-free', 'stuffed', 'hand-tossed'], 'Please select a crust type')
 })

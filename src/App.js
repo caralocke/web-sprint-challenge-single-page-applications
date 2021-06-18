@@ -18,9 +18,9 @@ const StyledApp = styled.div`
 
 const StlyedTitle = styled.h1`
   color:${({theme}) => theme.primaryColor};
-  margin-left: 10px;
   -webkit-text-stroke-width: .7px;
   -webkit-text-stroke-color: ${({theme}) => theme.black};
+  margin-bottom: 10px;
 
   &:hover {
     color: ${({theme}) => theme.secondaryColor};
@@ -60,6 +60,7 @@ const StyledButton = styled.button`
     background-color: ${({theme}) => theme.tertiaryColor};
     -webkit-text-stroke-width: .5px;
     -webkit-text-stroke-color: ${({theme}) => theme.primaryColor};
+    cursor: pointer;
   }
 `
 
@@ -71,12 +72,12 @@ const initialFormValues = {
   pepperoni: false,
   sausage: false,
   vegetable: false,
-  special: ''
+  special: '',
 }
 const initialFormErrors ={
   name:'',
   size: '',
-  special: ''
+  special: '',
 }
 
 const App = () => {
@@ -114,7 +115,8 @@ const App = () => {
       pepperoni: formValues.pepperoni,
       sausage: formValues.sausage,
       vegetable: formValues.vegetable,
-      special: formValues.special
+      special: formValues.special,
+      crust: formValues.crust
     }
     axios
     .post(`https://reqres.in/api/orders`, newCustomer)
@@ -138,9 +140,9 @@ const App = () => {
   return (
     <StyledApp>
       <StyledTop>
-         <StlyedTitle>Lambda Eats</StlyedTitle>
+          <StlyedTitle>Lambda Eats</StlyedTitle>
          <StyledNav>
-          <StyledLinks to='/'><StyledButton>Home</StyledButton></StyledLinks>
+          <StyledLinks to='/' id='go-home'><StyledButton>Home</StyledButton></StyledLinks>
           <StyledLinks to='/pizza' id='order-pizza'><StyledButton>Order Now!</StyledButton></StyledLinks> {/*Add Link to OrderForm with the id 'order-pizza'*/}
          </StyledNav>
       </StyledTop>
