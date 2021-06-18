@@ -28,7 +28,6 @@ const Styledh2 = styled.h2`
         color: ${({theme}) => theme.tertiaryColor};
         border: 1px solid ${({theme}) => theme.tertiaryColor};
         transform: scale(1.1);
-
     } 
 `
 
@@ -49,6 +48,7 @@ const StyledButton = styled.button`
     background-color: ${({theme}) => theme.tertiaryColor};
     -webkit-text-stroke-width: .5px;
     -webkit-text-stroke-color: ${({theme}) => theme.primaryColor};
+    transform: scale(1.1);
   }
 `
 

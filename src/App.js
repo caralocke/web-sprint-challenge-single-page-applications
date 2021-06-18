@@ -6,19 +6,21 @@ import OrderForm from './components/OrderForm' //Imported OrderForm
 import schema from './validation/formSchema' //Import the schema
 import axios from 'axios' //Import axios
 import styled from 'styled-components' //Import styled
-import theme from "./theme";
+import brickImg from './images/brick.jpg'
 
 const StyledApp = styled.div`
   font-family: sans-serif;
   text-align: center;
   width: 100%;
+  background-image: url(${brickImg});
+  background-size: cover;
 `
 
 const StlyedTitle = styled.h1`
   color:${({theme}) => theme.primaryColor};
   margin-left: 10px;
   -webkit-text-stroke-width: .7px;
-  -webkit-text-stroke-color: orange;
+  -webkit-text-stroke-color: ${({theme}) => theme.black};
 
   &:hover {
     color: ${({theme}) => theme.secondaryColor};
