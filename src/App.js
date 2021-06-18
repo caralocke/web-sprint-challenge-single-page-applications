@@ -13,10 +13,12 @@ const initialFormValues = {
   pepperoni: false,
   sausage: false,
   vegetable: false,
+  special: ''
 }
 const initialFormErrors ={
   name:'',
   size: '',
+  special: ''
 }
 
 const App = () => {
