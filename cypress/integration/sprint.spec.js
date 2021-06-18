@@ -1,4 +1,5 @@
 //Created sprint test file
+/* eslint-disable cypress/no-unnecessary-waiting */
 describe('Lambda Eats App', () => {
     beforeEach(() => {
         cy.visit('http://localhost:3000/pizza') //tell cypress to visit my order form page before each individual test
