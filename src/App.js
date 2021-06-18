@@ -8,9 +8,45 @@ import axios from 'axios' //Import axios
 import styled from 'styled-components' //Import styled
 
 const StyledApp = styled.div`
-  display: flex;
-  flex-direction: column;
+  font-family: sans-serif;
+  text-align: center;
+  width: 100%;
+`
+
+const StlyedTitle = styled.h1`
+  color:${({theme}) => theme.primaryColor};
+
+  &:hover {
+    color: ${({theme}) => theme.secondaryColor};
+    transform: scale(1.1);
+  }
+`
+
+const StyledTop = styled.nav`
+  display:flex;
+  justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid ${({theme}) => theme.secondaryColor};
+`
+
+const StyledNav = styled.div`
+  display:flex;
+  justify-content:space-between;  
+`
+
+const StyledLinks = styled(Link)`
+  margin-right: 10px;
+
+  &:hover {
+    color: ${({theme}) => theme.secondaryColor};
+    transform: scale(1.1);
+  }
+`
+
+const StyledButton = styled.button`
+  background-color: ${({theme}) => theme.primaryColor};
+  color: ${({theme}) => theme.secondaryColor};
+  font-weight: bold;
 `
 
 //create initial form values
@@ -81,20 +117,21 @@ const App = () => {
 
   return (
     <StyledApp>
-      <h1>Lambda Eats</h1>
-      <Link to='/'>Home</Link>
-      <Link to='/pizza' id='order-pizza'>Order Now!</Link> {/*Add Link to OrderForm with the id 'order-pizza'*/}
-      
-      <Switch>
+      <StyledTop>
+         <StlyedTitle>Lambda Eats</StlyedTitle>
+         <StyledNav>
+          <StyledLinks to='/'><StyledButton>Home</StyledButton></StyledLinks>
+          <StyledLinks to='/pizza' id='order-pizza'><StyledButton>Order Now!</StyledButton></StyledLinks> {/*Add Link to OrderForm with the id 'order-pizza'*/}
+         </StyledNav>
+      </StyledTop>
 
+      <Switch>
         <Route path='/pizza'> {/*Add Route with path of '/pizza' for the OrderForm component */}
           <OrderForm values={formValues} errors={formErrors} change={inputChange} submit={formSubmit}/> {/*Passing props to OrderForm */}
         </Route>
-
         <Route path='/'> {/*Add Route with path of '/' for the Home component*/}
           <Home />
         </Route>
-
       </Switch>
     </StyledApp>
   );
