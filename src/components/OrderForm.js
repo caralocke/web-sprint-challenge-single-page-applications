@@ -28,6 +28,7 @@ const StyledInputs = styled.div `
     display:flex;
     flex-direction: column;
     margin: 0 auto;
+    max-width: 50%;
 
     &.checkboxes {
         display:flex;
@@ -43,15 +44,25 @@ const StyledButton = styled.button`
   -webkit-text-stroke-width: .3px;
   -webkit-text-stroke-color: orange;
 
+  &:disabled {
+    color:maroon;
+    background-color: darkgray;
+    border: 2px solid maroon;
+    cursor: not-allowed;
+  }
+
   &:hover {
     background-color: ${({theme}) => theme.tertiaryColor};
     -webkit-text-stroke-width: .5px;
     -webkit-text-stroke-color: ${({theme}) => theme.primaryColor};
   }
 `
+const StyledErrors = styled.div`
+    color: ${({theme}) => theme.tertiaryColor};
+`
 
 export default function OrderForm(props) {
-    const { values, change, errors, submit } = props
+    const { values, change, errors, submit, disabled } = props
 
     //create a function to handle the onChange event for the inputs
     const onChange = evt => {
@@ -69,11 +80,12 @@ export default function OrderForm(props) {
     return (
         <StyledFormContainer id='pizza-form' onSubmit={onSubmit}> {/*A form with an id of 'pizza-form'*/}
             <StyledForm>
-                <div className='errors'> {/*Display the validation errors */}
-                    <div>{errors.name}</div>
-                </div>
-
                 <StyledInputs>
+                    <div className='errors'> {/*Display the validation errors */}
+                        <StyledErrors>{errors.name}</StyledErrors>
+                        <StyledErrors>{errors.size}</StyledErrors>
+                    </div>
+
                     <label>Name:
                         <input id='name-input' name='name' placeholder='Enter Name' type='text' value={values.name} onChange={onChange}/> {/*A name text input field with an id of 'name-input' */}
                     </label>
@@ -120,7 +132,7 @@ export default function OrderForm(props) {
                 </StyledInputs>
             </StyledForm>
                 <div>
-                    <StyledButton id='order-button'>Add to Order</StyledButton> {/*An Add to Order button with an id of 'order-button'*/}
+                    <StyledButton disabled={disabled} id='order-button'>Add to Order</StyledButton> {/*An Add to Order button with an id of 'order-button'*/}
                 </div>
         </StyledFormContainer>
     )

@@ -1,4 +1,4 @@
-import React, { useState } from "react"; //Imported useState
+import React, { useState, useEffect } from "react"; //Imported useState and useEffect
 import { Link, Route, Switch } from 'react-router-dom'; //Import Route and Switch
 import * as yup from 'yup' //Import yup
 import Home from './components/Home' //Imported the Home Component
@@ -84,6 +84,7 @@ const App = () => {
   const [ formValues, setFormValues ] = useState(initialFormValues) //state for form values
   const [ formErrors, setFormErrors ] = useState(initialFormErrors) //state for form errors
   const [ customers, setCustomers ] = useState([]) //state for customers
+  const [ disabled, setDisabled ] = useState(true)  //state for disabled for submit button
 
   //write a validate function to set use the state for form errors
   const validate = (name, value) => {
@@ -129,6 +130,11 @@ const App = () => {
     })
   }
 
+  //Write a hook to adjust the status of disabled every time formValues changes
+  useEffect(() => {
+    schema.isValid(formValues).then(valid => setDisabled(!valid))
+  }, [formValues])
+
   return (
     <StyledApp>
       <StyledTop>
@@ -141,7 +147,7 @@ const App = () => {
 
       <Switch>
         <Route path='/pizza'> {/*Add Route with path of '/pizza' for the OrderForm component */}
-          <OrderForm values={formValues} errors={formErrors} change={inputChange} submit={formSubmit}/> {/*Passing props to OrderForm */}
+          <OrderForm values={formValues} errors={formErrors} change={inputChange} submit={formSubmit} disabled={disabled}/> {/*Passing props to OrderForm */}
         </Route>
         <Route path='/'> {/*Add Route with path of '/' for the Home component*/}
           <Home />
