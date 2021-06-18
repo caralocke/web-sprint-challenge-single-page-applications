@@ -9,6 +9,10 @@ import schema from './validation/formSchema' //Import the schema
 const initialFormValues = {
   name: '',
   size: '',
+  cheese: false,
+  pepperoni: false,
+  sausage: false,
+  vegetable: false,
 }
 const initialFormErrors ={
   name:'',
