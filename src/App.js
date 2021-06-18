@@ -5,6 +5,13 @@ import Home from './components/Home' //Imported the Home Component
 import OrderForm from './components/OrderForm' //Imported OrderForm
 import schema from './validation/formSchema' //Import the schema
 import axios from 'axios' //Import axios
+import styled from 'styled-components' //Import styled
+
+const StyledApp = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 //create initial form values
 const initialFormValues = {
@@ -73,10 +80,11 @@ const App = () => {
   }
 
   return (
-    <>
+    <StyledApp>
       <h1>Lambda Eats</h1>
+      <Link to='/'>Home</Link>
       <Link to='/pizza' id='order-pizza'>Order Now!</Link> {/*Add Link to OrderForm with the id 'order-pizza'*/}
-
+      
       <Switch>
 
         <Route path='/pizza'> {/*Add Route with path of '/pizza' for the OrderForm component */}
@@ -88,7 +96,7 @@ const App = () => {
         </Route>
 
       </Switch>
-    </>
+    </StyledApp>
   );
 };
 export default App;
