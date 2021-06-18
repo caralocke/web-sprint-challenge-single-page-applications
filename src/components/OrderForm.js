@@ -11,8 +11,10 @@ export default function OrderForm(props) {
     }
 
     return (
-        <form id='pizza-form'>
-            
+        <form id='pizza-form'> {/*A form with an id of 'pizza-form'*/}
+            <label>
+                <input id='name-input' type='text' value={values.name} onChange={onChange}/> {/*A name text input field with an id of 'name-input' */}
+            </label>
         </form>
     )
 }
