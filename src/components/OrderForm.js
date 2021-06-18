@@ -1,7 +1,7 @@
-//Created a component for the home page
+//Created a component for my order form
 import React from 'react'
 
-export default function Home() {
+export default function OrderForm() {
     return (
         <div>
             
