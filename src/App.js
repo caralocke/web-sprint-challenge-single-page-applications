@@ -7,10 +7,12 @@ import schema from './validation/formSchema' //Import the schema
 
 //create initial form values
 const initialFormValues = {
-  name: ''
+  name: '',
+  size: '',
 }
 const initialFormErrors ={
   name:'',
+  size: '',
 }
 
 const App = () => {

@@ -15,8 +15,18 @@ export default function OrderForm(props) {
             <div className='errors'> {/*Display the validation errors */}
                 <div>{errors.name}</div>
             </div>
+
             <label>Name:
                 <input id='name-input' name='name' type='text' value={values.name} onChange={onChange}/> {/*A name text input field with an id of 'name-input' */}
+            </label>
+
+            <label>Size:
+                <select id='size-dropdown'>
+                    <option value=''>-Select a Size-</option>
+                    <option value='small'>Small</option>
+                    <option value='medium'>Medium</option>
+                    <option value='large'>Large</option>
+                </select>
             </label>
         </form>
     )
