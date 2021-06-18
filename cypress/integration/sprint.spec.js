@@ -10,6 +10,8 @@ describe('Lambda Eats App', () => {
     const pepperoniInput = () => cy.get('input[name=pepperoni]')
     const sausageInput = () => cy.get('input[name=sausage]')
     const vegetableInput = () => cy.get('input[name=vegetable]')
+    const sizeInput = () => cy.get('#size-dropdown')
+    const orderBtn = () => cy.get('#order-button')
 
     it('Can add text to the box', () =>{
         nameInput().type('Name')
@@ -21,5 +23,12 @@ describe('Lambda Eats App', () => {
         pepperoniInput().click()
         sausageInput().click()
         vegetableInput().click()
+    })
+
+    it('Can submit the form', () => {
+        nameInput().type('Name')
+        sizeInput().select('small')
+        cheeseInput().click()
+        orderBtn().click()
     })
 })
